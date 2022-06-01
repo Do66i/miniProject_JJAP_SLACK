@@ -1,0 +1,25 @@
+{
+  "compilerOptions" :{
+    "esModuleInterop": true, // import React from 'react'; 를 써도 되게?
+    "sourceMap": true, // 원래 에러난 위치 찾기 편함
+    "lib": ["es2020","DOM"], // 최신문법
+    "jsx": "react",
+    "module": "esnext", // 최신모듈 (import, export...)
+    "moduleResolution": "Node", 
+    "target": "ES5",
+    "strict": true, // type checking 엄.격.하.게 -> 이게 설정안되어있으면 anyscript가 될 수 있다는 것
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": { // ../../../ << 이런거 지저분하게 안하겠다..? 절대경로처럼 import할 수 있도록 !
+      "@hooks/*" : ["hooks/*"],
+      "@components/*" : ["components/*"],
+      "@layouts/*" : ["layouts/*"],
+      "@pages/*" : ["pages/*"],
+      "@utils/*" : ["utils/*"],
+      "@typings/*" : ["typings/*"]
+    }
+  }
+}
+
+//바벨을 중간에 끼워줘야함... 이미지 css 어쩌구 저쩌구 싹 다 js로 변환할 수 있으니까 !
+// 타입 + etc 를 위해 바벨로 넘겨줘야함

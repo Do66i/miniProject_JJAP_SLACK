@@ -1,0 +1,7 @@
+{
+  "printWidth": 120, // 한 줄에 120자 넘기지 않겠다
+  "tabWidth": 2,// 띄워쓰기는 2칸
+  "singleQuote": true,// 작은따옴표
+  "trailingComma": "all",// 항상 콤마 붙이겠다
+  "semi": true// 세미콜론 항상 !
+}
