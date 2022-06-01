@@ -1,10 +1,17 @@
 import React from 'react';
+import loadable from '@loadable/component';
+import { Routes, Route } from 'react-router-dom';
+
+const LogIn = loadable(() => import('@pages/Login'));
+const SignUp = loadable(() => import('@pages/SignUp'));
 
 const App = () => {
   return (
-    <div>
-      <h1>setting 폴더에 따로 담아주고 싶었지만 그러면 안된다는 것을 이제야 깨달았다 도륵..</h1>
-    </div>
+    <Routes>
+      <Route path="/*" element={<LogIn />} />
+      <Route path="/login" element={<LogIn />} />
+      <Route path="/signup" element={<SignUp />} />
+    </Routes>
   );
 };
 
