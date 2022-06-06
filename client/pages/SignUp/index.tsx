@@ -1,23 +1,16 @@
 import React, { useCallback, useState, useRef } from 'react';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './styles';
 import { Link } from 'react-router-dom';
+import useInput from '@hooks/useInput';
 
 const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [email, onChangeEmail] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
+  const [password, , setPassword] = useInput('');
+  const [passwordCheck, , setPasswordCheck] = useInput('');
   const [missmatchError, setMissmatchError] = useState(false);
 
   const Inputref = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  const onChangeEmail = useCallback((e: any) => {
-    setEmail(e.target.value);
-  }, []); // useCallback을 써야 성능최적화 실현가능
-
-  const onChangeNickname = useCallback((e: any) => {
-    setNickname(e.target.value);
-  }, []);
 
   const onChangePassword = useCallback(
     (e: any) => {
