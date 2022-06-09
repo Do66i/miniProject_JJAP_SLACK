@@ -14,6 +14,14 @@ const LogIn = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (data || data === undefined) {
+      navigate('/workspace/channel');
+    }
+    // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
+    //로그인되면 if문에서 걸림 리턴값나옴
+  }, [data]);
+
   const onSubmit = useCallback(
     (e: any) => {
       e.preventDefault();
@@ -40,11 +48,6 @@ const LogIn = () => {
     [email, password],
   );
 
-  if (data || data === undefined) {
-    navigate('/workspace/channel');
-  } // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
-  //로그인되면 if문에서 걸림 리턴값나옴
-
   return (
     <div id="container">
       <Header>JJAP SLACK</Header>
@@ -52,13 +55,13 @@ const LogIn = () => {
         <Label id="email-label">
           <span>이메일 주소</span>
           <div>
-            <Input type="email" id="email" value={email} onChange={onChangeEmail} />
+            <Input autoComplete="false" type="email" id="email" value={email} onChange={onChangeEmail} />
           </div>
         </Label>
         <Label id="password-label">
           <span>비밀번호</span>
           <div>
-            <Input type="password" id="password" value={password} onChange={onChangePassword} />
+            <Input autoComplete="false" type="password" id="password" value={password} onChange={onChangePassword} />
           </div>
           {lonInError && <Error>이메일과 비밀번호 둘 중 하나 틀림 입.구.컷</Error>}
         </Label>
