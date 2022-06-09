@@ -5,6 +5,7 @@ const Workspace = require("../models/workspace");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    //serializeUser -> user 객체를 전달받아 세션
     // 서버쪽에 [{ id: 1, cookie: 'clhxy' }]
     done(null, user.id);
   });

@@ -69,28 +69,34 @@ const SignUp = () => {
         <Label id="email-label">
           <span>이메일 주소</span>
           <div>
-            <Input type="email" id="email" value={email} onChange={onChangeEmail} ref={Inputref} />
+            <Input autoComplete="false" type="email" id="email" value={email} onChange={onChangeEmail} ref={Inputref} />
           </div>
         </Label>
 
         <Label id="nickname-label">
           <span>별명</span>
           <div>
-            <Input type="text" id="nickname" value={nickname} onChange={onChangeNickname} />
+            <Input autoComplete="false" type="text" id="nickname" value={nickname} onChange={onChangeNickname} />
           </div>
         </Label>
 
         <Label id="password-label">
           <span>비밀번호</span>
           <div>
-            <Input type="password" id="password" value={password} onChange={onChangePassword} />
+            <Input autoComplete="false" type="password" id="password" value={password} onChange={onChangePassword} />
           </div>
         </Label>
 
         <Label id="password-check-label">
           <span>비밀번호 확인</span>
           <div>
-            <Input type="password" id="password-check" value={passwordCheck} onChange={onChangePasswordCheck} />
+            <Input
+              autoComplete="false"
+              type="password"
+              id="password-check"
+              value={passwordCheck}
+              onChange={onChangePasswordCheck}
+            />
           </div>
 
           {missmatchError && <Error>비밀번호가 일치하지 않습니다</Error>}
