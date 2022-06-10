@@ -63,9 +63,8 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
           <WorkspaceName>JJAP SLACK</WorkspaceName>
           <MenuScroll></MenuScroll>
         </Channels>
-        <Chats>Chats</Chats>
+        <Chats>{children}</Chats>
       </WorkspaceWrapper>
-      {children}
     </div>
   );
 };

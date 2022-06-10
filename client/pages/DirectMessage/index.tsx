@@ -1,12 +1,12 @@
 import Workspace from '@layouts/Workspace';
 import React from 'react';
 
-function Channel() {
+const DirectMessage = () => {
   return (
     <Workspace>
-      <div>로그인띠 !</div>
+      <div>DM!</div>
     </Workspace>
   );
-}
+};
 
-export default Channel;
+export default DirectMessage;
