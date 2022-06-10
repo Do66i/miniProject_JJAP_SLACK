@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 const LogIn = loadable(() => import('@pages/Login'));
 const SignUp = loadable(() => import('@pages/SignUp'));
-const Channel = loadable(() => import('@pages/Channel'));
+const Channel = loadable(() => import('@pages/Workspace'));
 
 const App = () => {
   return (

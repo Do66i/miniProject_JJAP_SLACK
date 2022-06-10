@@ -17,6 +17,7 @@ const LogIn = () => {
   useEffect(() => {
     if (data || data === undefined) {
       navigate('/workspace/channel');
+      return;
     }
     // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
     //로그인되면 if문에서 걸림 리턴값나옴
