@@ -41,8 +41,8 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
   useEffect(() => {
     if (!data || data === undefined) {
       navigate('/login');
+      return;
     }
-    return;
   }, [data]);
 
   console.log('data--------------', data);
