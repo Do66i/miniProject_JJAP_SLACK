@@ -45,14 +45,14 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
     }
   }, [data]);
 
-  console.log('data--------------', data);
+  console.log('data--------------', data ?? '데이터들어오는중');
 
   return (
     <div>
       <Header>
         <RightMenu>
           <span>
-            <ProfileImg src={gravatar.url(data, { s: '28px', d: 'retro' })} alt={data} />
+            <ProfileImg src={gravatar.url(data, { s: '28px', d: 'retro' })} alt={data ? data : 'false'} />
           </span>
         </RightMenu>
       </Header>
