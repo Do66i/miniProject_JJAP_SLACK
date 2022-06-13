@@ -10,7 +10,7 @@ const LogIn = () => {
   const { data, error, mutate } = useSWR('http://localhost:3100/api/users', fetcher, { dedupingInterval: 100000 }); //로그인 후에 데이터를 전해줄 API
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [lonInError, setLogInError] = useState(false);
+  const [logInError, setLogInError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const LogIn = () => {
           <div>
             <Input autoComplete="false" type="password" id="password" value={password} onChange={onChangePassword} />
           </div>
-          {lonInError && <Error>이메일과 비밀번호 둘 중 하나 틀림 입.구.컷</Error>}
+          {logInError && <Error>이메일과 비밀번호 둘 중 하나 틀림 입.구.컷</Error>}
         </Label>
         <Button type="submit">로그인</Button>
       </Form>
