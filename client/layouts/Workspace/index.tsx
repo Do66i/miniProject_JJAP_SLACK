@@ -13,6 +13,8 @@ import {
   WorkspaceName,
   Chats,
   MenuScroll,
+  ProfileModal,
+  LogOutButton,
 } from './styles';
 import gravatar from 'gravatar';
 import Menu from '@components/Menu';
@@ -59,11 +61,21 @@ const Workspace: FC<React.PropsWithChildren<{}>> = ({ children }) => {
         <RightMenu>
           <span onClick={onClickUserProfile}>
             <ProfileImg src={gravatar.url(data?.nickname, { s: '28px', d: 'retro' })} alt={data?.toString()} />
-            {showUserMenu && <Menu>프로필메뉴</Menu>}
+            {showUserMenu && (
+              <Menu style={{ right: '0', top: '38' }} show={showUserMenu} onCloseModal={onClickUserProfile}>
+                <ProfileModal>
+                  <img src={gravatar.url(data?.nickname, { s: '36px', d: 'retro' })} alt={data?.toString()} />
+                  <div>
+                    <span id="profile-name">{data?.nickname}</span>
+                    <span id="profile-active">Active</span>
+                  </div>
+                  <LogOutButton onClick={onLogout}>로그아웃</LogOutButton>
+                </ProfileModal>
+              </Menu>
+            )}
           </span>
         </RightMenu>
       </Header>
-      <button onClick={onLogout}>로그아웃</button>
       <WorkspaceWrapper>
         <Workspaces>test</Workspaces>
         <Channels>
