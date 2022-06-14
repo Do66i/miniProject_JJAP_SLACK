@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
 
 const LogIn = () => {
-  const { data, error, mutate } = useSWR('http://localhost:3100/api/users', fetcher, { dedupingInterval: 100000 }); //로그인 후에 데이터를 전해줄 API
+  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher, { dedupingInterval: 100000 }); //로그인 후에 데이터를 전해줄 API
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
@@ -15,8 +15,8 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data || data === undefined) {
-      navigate('/workspace/channel');
+    if (data) {
+      navigate('/workspace/sleact/channel/일반');
       return;
     }
     // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
@@ -36,9 +36,8 @@ const LogIn = () => {
           },
         )
         .then((response) => {
-          mutate(response.data, false); // OPTIMISTIC UI
+          mutate(response.data); // OPTIMISTIC UI
           console.log('로그인 성공띠', data);
-          console.log('mutate data', response.data);
         })
         .catch((err) => {
           console.log(data);

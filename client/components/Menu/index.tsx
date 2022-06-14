@@ -3,7 +3,7 @@ import { CloseModalButton, CreateMenu } from './styles';
 
 interface Props {
   show: boolean;
-  onCloseModal: () => void;
+  onCloseModal: (e: any) => void;
   style: CSSProperties;
   closeButton?: boolean;
   children: React.ReactNode;
@@ -13,10 +13,14 @@ const Menu: FC<Props> = ({ children, style, show, onCloseModal, closeButton }) =
   const stopPropagation = useCallback((e: any) => {
     e.stopPropagation();
   }, []);
+
+  if (!show) return null;
+
   return (
     <CreateMenu onClick={onCloseModal}>
       <div style={style} onClick={stopPropagation}></div>
       {closeButton && <CloseModalButton onClick={onCloseModal}>&times;</CloseModalButton>}
+      dsfadsfa
       {children}
     </CreateMenu>
   );

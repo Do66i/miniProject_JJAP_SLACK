@@ -1,10 +1,14 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './styles';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from '@hooks/useInput';
+import useSWR from 'swr';
+import fetcher from '@utils/fetcher';
 
 const SignUp = () => {
+  const { data, error, mutate } = useSWR('/api/users', fetcher);
+
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
   const [password, , setPassword] = useInput('');
@@ -61,6 +65,20 @@ const SignUp = () => {
     },
     [email, nickname, password, passwordCheck, missmatchError],
   );
+
+  if (data === undefined) {
+    return <div>로딩중임 기둘기</div>;
+  }
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (data) {
+      navigate('/workspace/sleact/channel/일반');
+      return;
+    }
+    // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
+    //로그인되면 if문에서 걸림 리턴값나옴
+  }, [data]);
 
   return (
     <div id="container">

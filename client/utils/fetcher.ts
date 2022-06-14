@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const fetcher = (url: string) =>
+const fetcher = <Data>(url: string) =>
   axios
-    .get(url, {
+    .get<Data>(url, {
       withCredentials: true,
     })
     .then((res) => res.data);
