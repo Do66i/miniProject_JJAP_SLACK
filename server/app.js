@@ -16,7 +16,7 @@ const apiRouter = require("./routes/api");
 const webSocket = require("./socket");
 
 const app = express();
-app.set("PORT", process.env.PORT || 3100);
+app.set("PORT", process.env.PORT || 3095);
 sequelize
   .sync()
   .then(() => {
