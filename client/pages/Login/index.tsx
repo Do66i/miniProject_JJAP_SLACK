@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
 
 const LogIn = () => {
-  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher, { dedupingInterval: 100000 }); //로그인 후에 데이터를 전해줄 API
+  const { data, error, mutate } = useSWR('/api/users', fetcher, { dedupingInterval: 100000 }); //로그인 후에 데이터를 전해줄 API
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
