@@ -64,7 +64,6 @@ const Workspace: FC<React.PropsWithChildren<{}>> = () => {
 
   useEffect(() => {
     if (channelData && userData && socket) {
-      console.log(socket);
       socket.emit('login', { id: userData.id, channels: channelData.map((v) => v.id) });
     }
   }, [socket, channelData, userData]);
@@ -77,7 +76,6 @@ const Workspace: FC<React.PropsWithChildren<{}>> = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    console.log('userData 변경 on--------------', userData ?? '데이터들어오는중');
     if (!userData) {
       navigate('/login');
     }

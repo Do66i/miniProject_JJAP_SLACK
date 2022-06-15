@@ -43,14 +43,14 @@ const SignUp = () => {
         return;
       } else {
         e.preventDefault();
-        console.log('------------------로그인 확인', email, nickname, password, passwordCheck);
+        // console.log('------------------로그인 확인', email, nickname, password, passwordCheck);
         setSignupError('');
         setSignupSuccess(false);
         if (!missmatchError) {
           axios
             .post('/api/users', { email, nickname, password })
             .then((response) => {
-              console.log('에러따위 없소 ! 서버로 회원가입가기 전송 !', response);
+              // console.log('에러따위 없소 ! 서버로 회원가입가기 전송 !', response);
               setSignupSuccess(true);
             })
             .catch((err) => {
@@ -58,7 +58,7 @@ const SignUp = () => {
               setSignupError(err.response.data);
             })
             .finally(() => {
-              console.log('finally는 try, catch문에서도 사용가능');
+              // console.log('finally는 try, catch문에서도 사용가능');
             });
         }
       }

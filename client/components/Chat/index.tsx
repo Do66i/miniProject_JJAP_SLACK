@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import Workspace from '@layouts/Workspace';
 
 interface Props {
-  data: IDM;
+  data: IDM | IChat;
 }
 
 //@[궉도토](7)
@@ -17,7 +17,7 @@ interface Props {
 // |는 or \n 줄바꿈
 const Chat: VFC<Props> = ({ data }) => {
   const { workspace } = useParams<{ workspace: string }>();
-  const user = data.Sender;
+  const user = 'Sender' in data ? data.Sender : data.User;
   const result = useMemo(
     () =>
       regexifyString({

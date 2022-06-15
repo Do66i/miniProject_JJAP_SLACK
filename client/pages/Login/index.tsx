@@ -40,7 +40,6 @@ const LogIn = () => {
           console.log('로그인 성공띠', data);
         })
         .catch((err) => {
-          console.log(data);
           console.log('ㅋ 루저', err.response.data);
         })
         .finally(() => {});

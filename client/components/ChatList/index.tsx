@@ -1,27 +1,29 @@
 import Chat from '@components/Chat';
 import { IChat, IDM } from '@typings/db';
-import React, { useCallback, forwardRef, RefObject } from 'react';
+import React, { useCallback, VFC, RefObject } from 'react';
 import { ChatZone, Section, StickyHeader } from './styles';
-import { Scrollbars } from 'react-custom-scrollbars-2';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 interface Props {
-  ref: RefObject<Scrollbars>;
-  chatSections: { [key: string]: IDM[] };
+  scrollRef: RefObject<Scrollbars>;
+  chatSections: { [key: string]: (IDM | IChat)[] };
   setSize: (f: (size: number) => number) => Promise<(IDM | IChat)[][] | undefined>;
-  isEmpty: boolean;
   isReachingEnd?: boolean;
 }
 
-const ChatList = forwardRef<Scrollbars, Props>(({ chatSections, setSize, isEmpty, isReachingEnd, ref }) => {
+const ChatList: VFC<Props> = ({ chatSections, setSize, isReachingEnd, scrollRef }) => {
   const onScroll = useCallback((values: any) => {
     if (values.scrollTop === 0 && !isReachingEnd) {
-      setSize((prevSize) => prevSize + 1).then(() => {});
-      console.log('가장위입니다');
+      setSize((prevSize) => prevSize + 1).then(() => {
+        if (scrollRef?.current) {
+          scrollRef.current?.scrollTop(scrollRef.current?.getScrollHeight() - values.scrollHeight);
+        }
+      });
     }
   }, []); //스크롤시 채팅들 생기게하려고 (데이터 추가 로딩)
   return (
     <ChatZone>
-      <Scrollbars autoHide ref={ref} onScrollFrame={onScroll}>
+      <Scrollbars autoHide ref={scrollRef} onScrollFrame={onScroll}>
         {Object.entries(chatSections).map(([date, chats]) => {
           return (
             <Section className={`section-${date}`} key={date}>
@@ -36,6 +38,6 @@ const ChatList = forwardRef<Scrollbars, Props>(({ chatSections, setSize, isEmpty
       </Scrollbars>
     </ChatZone>
   );
-});
+};
 
 export default ChatList;
