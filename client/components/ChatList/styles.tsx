@@ -12,7 +12,6 @@ export const Section = styled.section`
 `;
 
 export const StickyHeader = styled.div`
-  display: flex;
   justify-content: center;
   flex: 1;
   width: 100%;
