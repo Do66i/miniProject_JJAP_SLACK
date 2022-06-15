@@ -1,10 +1,14 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { Success, Form, Error, Label, Input, LinkContainer, Button, Header } from './styles';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from '@hooks/useInput';
+import useSWR from 'swr';
+import fetcher from '@utils/fetcher';
 
 const SignUp = () => {
+  const { data, error, mutate } = useSWR('/api/users', fetcher);
+
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
   const [password, , setPassword] = useInput('');
@@ -39,14 +43,14 @@ const SignUp = () => {
         return;
       } else {
         e.preventDefault();
-        console.log('------------------로그인 확인', email, nickname, password, passwordCheck);
+        // console.log('------------------로그인 확인', email, nickname, password, passwordCheck);
         setSignupError('');
         setSignupSuccess(false);
         if (!missmatchError) {
           axios
             .post('/api/users', { email, nickname, password })
             .then((response) => {
-              console.log('에러따위 없소 ! 서버로 회원가입가기 전송 !', response);
+              // console.log('에러따위 없소 ! 서버로 회원가입가기 전송 !', response);
               setSignupSuccess(true);
             })
             .catch((err) => {
@@ -54,13 +58,27 @@ const SignUp = () => {
               setSignupError(err.response.data);
             })
             .finally(() => {
-              console.log('finally는 try, catch문에서도 사용가능');
+              // console.log('finally는 try, catch문에서도 사용가능');
             });
         }
       }
     },
     [email, nickname, password, passwordCheck, missmatchError],
   );
+
+  if (data === undefined) {
+    return <div>로딩중임 기둘기</div>;
+  }
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (data) {
+      navigate('/workspace/sleact/channel/일반');
+      return;
+    }
+    // 로그인전일때 data=false(api문서 참고)니까 실행안되고 패스됨
+    //로그인되면 if문에서 걸림 리턴값나옴
+  }, [data]);
 
   return (
     <div id="container">
@@ -69,28 +87,34 @@ const SignUp = () => {
         <Label id="email-label">
           <span>이메일 주소</span>
           <div>
-            <Input type="email" id="email" value={email} onChange={onChangeEmail} ref={Inputref} />
+            <Input autoComplete="false" type="email" id="email" value={email} onChange={onChangeEmail} ref={Inputref} />
           </div>
         </Label>
 
         <Label id="nickname-label">
           <span>별명</span>
           <div>
-            <Input type="text" id="nickname" value={nickname} onChange={onChangeNickname} />
+            <Input autoComplete="false" type="text" id="nickname" value={nickname} onChange={onChangeNickname} />
           </div>
         </Label>
 
         <Label id="password-label">
           <span>비밀번호</span>
           <div>
-            <Input type="password" id="password" value={password} onChange={onChangePassword} />
+            <Input autoComplete="false" type="password" id="password" value={password} onChange={onChangePassword} />
           </div>
         </Label>
 
         <Label id="password-check-label">
           <span>비밀번호 확인</span>
           <div>
-            <Input type="password" id="password-check" value={passwordCheck} onChange={onChangePasswordCheck} />
+            <Input
+              autoComplete="false"
+              type="password"
+              id="password-check"
+              value={passwordCheck}
+              onChange={onChangePasswordCheck}
+            />
           </div>
 
           {missmatchError && <Error>비밀번호가 일치하지 않습니다</Error>}
