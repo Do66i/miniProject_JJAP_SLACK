@@ -45,15 +45,14 @@ const Channel = () => {
   const onSubmitForm = useCallback(
     (e: any) => {
       e.preventDefault();
-      console.log(chat);
-      if (chat?.trim() && chatData && channelData) {
+      if (chat?.trim() && chatData && channelData && myData) {
         const savedChat = chat;
         mutateChat((prevChatData) => {
           prevChatData?.[0].unshift({
             id: (chatData[0][0]?.id || 0) + 1,
             content: savedChat,
-            UserId: myData!.id,
-            User: myData!,
+            UserId: myData.id,
+            User: myData,
             ChannelId: channelData.id,
             Channel: channelData,
             createdAt: new Date(),
@@ -65,7 +64,7 @@ const Channel = () => {
         });
         axios
           .post(`/api/workspaces/${workspace}/channels/${channel}/chats`, {
-            content: chat,
+            content: savedChat,
           })
           .then(() => {
             mutateChat();
@@ -73,7 +72,7 @@ const Channel = () => {
           .catch(console.error);
       }
     },
-    [chat, chatData, myData, channelData, workspace, channel],
+    [chat, workspace, channel, channelData, myData, chatData, mutateChat, setChat],
   );
 
   const onMessage = useCallback(
@@ -89,7 +88,7 @@ const Channel = () => {
               scrollbarRef.current.getScrollHeight() <
               scrollbarRef.current.getClientHeight() + scrollbarRef.current.getScrollTop() + 150
             ) {
-              console.log('scrollToBottom!', scrollbarRef.current?.getValues());
+              // console.log('scrollToBottom!', scrollbarRef.current?.getValues());
               setTimeout(() => {
                 scrollbarRef.current?.scrollToBottom();
               }, 50);

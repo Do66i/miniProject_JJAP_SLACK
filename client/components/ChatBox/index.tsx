@@ -13,6 +13,7 @@ interface Props {
   onSubmitForm: (e: any) => void;
   onChangeChat: (e: any) => void;
   placeholder?: string;
+  data?: IUser[];
 }
 
 const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat, placeholder }) => {
@@ -75,7 +76,7 @@ const ChatBox: VFC<Props> = ({ chat, onSubmitForm, onChangeChat, placeholder }) 
           id="editor-chat"
           value={chat}
           onChange={onChangeChat}
-          onKeyDown={onkeydownChat}
+          onKeyPress={onkeydownChat}
           placeholder={placeholder}
           inputRef={textareaRef}
           allowSuggestionsAboveCursor

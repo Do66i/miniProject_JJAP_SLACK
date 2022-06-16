@@ -407,6 +407,8 @@ router.get("/workspaces/:workspace/dms/:id/unreads", isLoggedIn, async (req, res
 });
 
 function getKeyByValue(object, value) {
+  console.log("------------object", object);
+  console.log("------------", value);
   return Object.keys(object).find((key) => object[key] === value);
 }
 router.post("/workspaces/:workspace/dms/:id/chats", isLoggedIn, async (req, res, next) => {
@@ -436,6 +438,8 @@ router.post("/workspaces/:workspace/dms/:id/chats", isLoggedIn, async (req, res,
     });
     const io = req.app.get("io");
     const onlineMap = req.app.get("onlineMap");
+    console.log("---------------onlineMap", onlineMap);
+    console.log("---------------workspace.url", workspace.url);
     const receiverSocketId = getKeyByValue(onlineMap[`/ws-${workspace.url}`], Number(ReceiverId));
     io.of(`/ws-${workspace.url}`).to(receiverSocketId).emit("dm", dmWithSender);
     res.send("ok");

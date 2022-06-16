@@ -34,7 +34,7 @@ const InviteChannelModal: FC<Props> = ({ show, onCloseModal, setShowInviteChanne
           email: newMember,
         })
         .then((response) => {
-          mutateMembers(response.data);
+          mutateMembers();
           setShowInviteChannelModal(false);
           setNewMember('');
         })
