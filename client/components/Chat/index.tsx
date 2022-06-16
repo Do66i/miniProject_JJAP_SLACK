@@ -21,7 +21,7 @@ const Chat: VFC<Props> = ({ data }) => {
   const result = useMemo(
     () =>
       regexifyString({
-        input: data.content,
+        input: data?.content,
         pattern: /@\[(.+?)\]\((\d+?)\)|\n/g,
         decorator(match, index) {
           const arr: string[] | null = match.match(/@\[(.+?)]\((\d+?)\)/)!;
@@ -38,6 +38,8 @@ const Chat: VFC<Props> = ({ data }) => {
     [data.content],
   );
 
+  console.log('------------------------', user?.nickname);
+
   return (
     <ChatWrapper>
       <div className="chat-img">
@@ -45,8 +47,8 @@ const Chat: VFC<Props> = ({ data }) => {
       </div>
       <div className="chat-text">
         <div className="chat-user">
-          <b>{user.nickname}</b>
-          <span>{dayjs(data.createdAt).format('h:mm A')}</span>
+          <b>{user?.nickname}</b>
+          <span>{dayjs(data?.createdAt).format('h:mm A')}</span>
         </div>
         <p>{result}</p>
       </div>
