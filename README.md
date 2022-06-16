@@ -77,26 +77,29 @@
 </details>
 
 
-<p align="center"><img src="" width="80%" height="80%" /></p>
-
  ### 사용한 기술
  
  ✔️ REACT, TypeScript,Webpack, Styled-Component, SWR, Axios, Socket.io, ES Lint, Prettier
  
  ### 구현한 기능
  
- ✔️ Webpack을 이용하여 개발환경 셋팅
- ✔️ 로그인 로그아웃 구현
- ✔️ SWR 라이브러리를 이용하여 data 관리
- ✔️ Socket.io로 실시간 채팅 구현
- ✔️ 워크스페이스/채널/DM 각 나눠서 채팅할 수 있도록 구현
- ✔️ 스크롤을 올리면 과거의 데이터가 보이면서 스크롤 길이가 줄어듬
- ✔️ 워크스페이스 입장 시 접속 활성화 구현
+ ✔️ Webpack을 이용하여 개발환경 셋팅 <br/>
+ ✔️ 로그인 로그아웃 구현 <br/>
+ ✔️ SWR 라이브러리를 이용하여 data 관리 <br/>
+ ✔️ Socket.io로 실시간 채팅 구현 <br/>
+ ✔️ 워크스페이스/채널/DM 각 나눠서 채팅할 수 있도록 구현 <br/>
+ ✔️ 스크롤을 올리면 과거의 데이터가 보이면서 스크롤 길이가 줄어듬 <br/>
+ ✔️ 워크스페이스 입장 시 접속 활성화 구현 <br/>
  
  
  #### 🤷‍♂️ 백엔드 부분도 직접 구현하였나요 ?
  🙋‍♂️ 아니요, 백엔드 부분은 기존에 구현되어 있는 코드들을 들고왔습니다. 
  
- 이번 프로젝트에서 저는 클라이언트를 구현시 사용하는 라이브러리, 클린코드 작성, 컴포넌트 나누기, AWS를 이용하여 배포하는 공부를 하였습니다 !
+ 이번 프로젝트에서 저는 [슬랙클론코딩인강](https://www.inflearn.com/course/%ED%81%B4%EB%A1%A0%EC%BD%94%EB%94%A9-%EC%8B%A4%EC%8B%9C%EA%B0%84%EC%B1%84%ED%8C%85/dashboard)을 참고하여 <br/>
+ 타입스크립트 & 리엑트로 클라이언트를 구현 사용하는 라이브러리, 클린코드 작성, 컴포넌트 나누기, AWS를 이용하여 배포하는 공부를 하였습니다 !
  
- ✔️ Webpack을 이용하여 개발환경 셋팅
+ <p align="center"><img src="https://user-images.githubusercontent.com/89396179/174101974-e4356e17-14fb-4263-9c01-3299e3812065.gif" width="40%" height="40%" />
+<p align="center">읽어주셔서 감사합니다</p>
+</p>
+
+
