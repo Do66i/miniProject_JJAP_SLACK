@@ -37,7 +37,6 @@ const LogIn = () => {
         )
         .then((response) => {
           mutate(response.data); // OPTIMISTIC UI
-          console.log('로그인 성공띠', data);
         })
         .catch((err) => {
           console.log('ㅋ 루저', err.response.data);

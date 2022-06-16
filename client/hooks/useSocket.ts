@@ -1,12 +1,11 @@
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 import { useCallback } from 'react';
-import axios from 'axios';
 
-const sockets: { [key: string]: SocketIOClient.Socket } = {};
+const sockets: { [key: string]: typeof Socket } = {};
 const backUrl =
   process.env.NODE_ENV === 'production'
-    ? 'http://ec2-3-39-195-4.ap-northeast-2.compute.amazonaws.com:3095/'
-    : 'http://localhost:3095/';
+    ? 'http://ec2-3-39-195-4.ap-northeast-2.compute.amazonaws.com:3095'
+    : 'http://localhost:3095';
 
 const useSocket = (workspace?: string): [SocketIOClient.Socket | undefined, () => void] => {
   const disconnet = useCallback(() => {
@@ -21,7 +20,7 @@ const useSocket = (workspace?: string): [SocketIOClient.Socket | undefined, () =
   }
 
   if (!sockets[workspace]) {
-    sockets[workspace] = io.connect(`${backUrl}/ws-${workspace}`, {
+    sockets[workspace] = io(`${backUrl}/ws-${workspace}`, {
       transports: ['websocket'],
     });
   }

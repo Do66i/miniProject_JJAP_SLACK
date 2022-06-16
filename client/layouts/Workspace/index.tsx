@@ -91,7 +91,7 @@ const Workspace: FC<React.PropsWithChildren<{}>> = () => {
         withCredentials: true,
       })
       .then(() => {
-        console.log('로그아웃 성공 !', userData);
+        // console.log('로그아웃 성공 !', userData);
         mutate(false, false);
         //! navigate('/login');
       })
@@ -190,7 +190,7 @@ const Workspace: FC<React.PropsWithChildren<{}>> = () => {
         <Workspaces>
           {userData?.Workspaces?.map((ws) => {
             return (
-              <Link key={ws.id} to={`/workspace/${123}/channel/일반`}>
+              <Link key={ws.id} to={`/workspace/${ws.url}/channel/일반`}>
                 <WorkspaceButton>{ws.name.slice(0, 1).toUpperCase()}</WorkspaceButton>
               </Link>
             );
